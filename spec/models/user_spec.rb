@@ -18,6 +18,15 @@ describe User do
                      password: "foobar", password_confirmation: "foobar")
   end
 
+  describe "with admin attribute set to 'true'" do
+    before do
+      @user.save!
+      @user.toggle!(:admin)
+    end
+
+    it { should be_admin }
+  end
+
   subject { @user }
 
   it { should respond_to(:name) }
